@@ -21,30 +21,30 @@ function getUnsafe(t, row, col) {
 
 function setUnsafe(t, x, row, col) {
   t[row][col] = x;
-  return /* () */0;
+  
 }
 
 function identityMatrix(param) {
-  return /* array */[
-          /* array */[
+  return [
+          [
             1,
             0,
             0,
             0
           ],
-          /* array */[
+          [
             0,
             1,
             0,
             0
           ],
-          /* array */[
+          [
             0,
             0,
             1,
             0
           ],
-          /* array */[
+          [
             0,
             0,
             0,
@@ -61,27 +61,24 @@ function equals(matrix1, matrix2) {
     var i = _i;
     if (i > 3) {
       return true;
-    } else {
-      var x = getUnsafe(matrix1, i, j);
-      var y = getUnsafe(matrix2, i, j);
-      if (Float.equals(x, y)) {
-        if (j < 3) {
-          _j = j + 1 | 0;
-          continue ;
-        } else {
-          _j = 0;
-          _i = i + 1 | 0;
-          continue ;
-        }
-      } else {
-        return false;
-      }
     }
+    var x = getUnsafe(matrix1, i, j);
+    var y = getUnsafe(matrix2, i, j);
+    if (!Float.equals(x, y)) {
+      return false;
+    }
+    if (j < 3) {
+      _j = j + 1 | 0;
+      continue ;
+    }
+    _j = 0;
+    _i = i + 1 | 0;
+    continue ;
   };
 }
 
 function multiply(m1, m2) {
-  var m3 = makeUninitializedUnsafe(/* () */0);
+  var m3 = makeUninitializedUnsafe(undefined);
   for(var row = 0; row <= 3; ++row){
     for(var col = 0; col <= 3; ++col){
       setUnsafe(m3, getUnsafe(m1, row, 0) * getUnsafe(m2, 0, col) + getUnsafe(m1, row, 1) * getUnsafe(m2, 1, col) + getUnsafe(m1, row, 2) * getUnsafe(m2, 2, col) + getUnsafe(m1, row, 3) * getUnsafe(m2, 3, col), row, col);
@@ -109,7 +106,7 @@ function transpose(matrix) {
 }
 
 function submatrix(m, row, col) {
-  var subMatrix = Matrix3D.makeUninitializedUnsafe(/* () */0);
+  var subMatrix = Matrix3D.makeUninitializedUnsafe(undefined);
   for(var i = 0; i <= 3; ++i){
     for(var j = 0; j <= 3; ++j){
       if (!(i === row || j === col)) {
@@ -161,7 +158,7 @@ function inverseUnsafe(matrix) {
         ];
   }
   var d = determinant(matrix);
-  var dest = makeUninitializedUnsafe(/* () */0);
+  var dest = makeUninitializedUnsafe(undefined);
   for(var row = 0; row <= 3; ++row){
     for(var col = 0; col <= 3; ++col){
       var c = cofactor(matrix, row, col);
@@ -171,26 +168,26 @@ function inverseUnsafe(matrix) {
   return dest;
 }
 
-var m = /* array */[
-  /* array */[
+var m = [
+  [
     1,
     2,
     3,
     4
   ],
-  /* array */[
+  [
     5.5,
     6.5,
     7.5,
     8.5
   ],
-  /* array */[
+  [
     9,
     10,
     11,
     12
   ],
-  /* array */[
+  [
     13.5,
     14.5,
     15.5,
@@ -275,26 +272,26 @@ if (!Float.equals(getUnsafe(m, 3, 2), 15.5)) {
       ];
 }
 
-var m1 = /* array */[
-  /* array */[
+var m1 = [
+  [
     1,
     2,
     3,
     4
   ],
-  /* array */[
+  [
     5,
     6,
     7,
     8
   ],
-  /* array */[
+  [
     9,
     8,
     7,
     6
   ],
-  /* array */[
+  [
     5,
     4,
     3,
@@ -302,26 +299,26 @@ var m1 = /* array */[
   ]
 ];
 
-var m2 = /* array */[
-  /* array */[
+var m2 = [
+  [
     1,
     2,
     3,
     4
   ],
-  /* array */[
+  [
     5,
     6,
     7,
     8
   ],
-  /* array */[
+  [
     9,
     8,
     7,
     6
   ],
-  /* array */[
+  [
     5,
     4,
     3,
@@ -340,26 +337,26 @@ if (!equals(m1, m2)) {
       ];
 }
 
-var m3 = /* array */[
-  /* array */[
+var m3 = [
+  [
     1,
     2,
     3,
     4
   ],
-  /* array */[
+  [
     5,
     6,
     7,
     8
   ],
-  /* array */[
+  [
     9,
     8,
     7,
     6
   ],
-  /* array */[
+  [
     5,
     4,
     3,
@@ -367,26 +364,26 @@ var m3 = /* array */[
   ]
 ];
 
-var m4 = /* array */[
-  /* array */[
+var m4 = [
+  [
     2,
     3,
     4,
     5
   ],
-  /* array */[
+  [
     6,
     7,
     8,
     9
   ],
-  /* array */[
+  [
     8,
     7,
     6,
     7
   ],
-  /* array */[
+  [
     4,
     3,
     2,
@@ -405,26 +402,26 @@ if (equals(m3, m4)) {
       ];
 }
 
-var m1$1 = /* array */[
-  /* array */[
+var m1$1 = [
+  [
     1,
     2,
     3,
     4
   ],
-  /* array */[
+  [
     5,
     6,
     7,
     8
   ],
-  /* array */[
+  [
     9,
     8,
     7,
     6
   ],
-  /* array */[
+  [
     5,
     4,
     3,
@@ -432,26 +429,26 @@ var m1$1 = /* array */[
   ]
 ];
 
-var m2$1 = /* array */[
-  /* array */[
+var m2$1 = [
+  [
     -2,
     1,
     2,
     3
   ],
-  /* array */[
+  [
     3,
     2,
     1,
     -1
   ],
-  /* array */[
+  [
     4,
     3,
     6,
     5
   ],
-  /* array */[
+  [
     1,
     2,
     7,
@@ -459,26 +456,26 @@ var m2$1 = /* array */[
   ]
 ];
 
-var m3$1 = /* array */[
-  /* array */[
+var m3$1 = [
+  [
     20,
     22,
     50,
     48
   ],
-  /* array */[
+  [
     44,
     54,
     114,
     108
   ],
-  /* array */[
+  [
     40,
     58,
     110,
     102
   ],
-  /* array */[
+  [
     16,
     26,
     46,
@@ -497,26 +494,26 @@ if (!equals(multiply(m1$1, m2$1), m3$1)) {
       ];
 }
 
-var matrix = /* array */[
-  /* array */[
+var matrix = [
+  [
     1,
     2,
     3,
     4
   ],
-  /* array */[
+  [
     2,
     4,
     4,
     2
   ],
-  /* array */[
+  [
     8,
     6,
     4,
     1
   ],
-  /* array */[
+  [
     0,
     0,
     0,
@@ -539,26 +536,26 @@ if (!Tuple.equals(multiplyTuple(matrix, b), c)) {
       ];
 }
 
-var matrix$1 = /* array */[
-  /* array */[
+var matrix$1 = [
+  [
     0,
     1,
     2,
     4
   ],
-  /* array */[
+  [
     1,
     2,
     4,
     8
   ],
-  /* array */[
+  [
     2,
     4,
     8,
     16
   ],
-  /* array */[
+  [
     4,
     8,
     16,
@@ -566,7 +563,7 @@ var matrix$1 = /* array */[
   ]
 ];
 
-if (!equals(multiply(matrix$1, identityMatrix(/* () */0)), matrix$1)) {
+if (!equals(multiply(matrix$1, identityMatrix(undefined)), matrix$1)) {
   throw [
         Caml_builtin_exceptions.assert_failure,
         /* tuple */[
@@ -579,7 +576,7 @@ if (!equals(multiply(matrix$1, identityMatrix(/* () */0)), matrix$1)) {
 
 var a = Tuple.makeTuple(1, 2, 3, 4);
 
-if (!Tuple.equals(multiplyTuple(identityMatrix(/* () */0), a), a)) {
+if (!Tuple.equals(multiplyTuple(identityMatrix(undefined), a), a)) {
   throw [
         Caml_builtin_exceptions.assert_failure,
         /* tuple */[
@@ -590,26 +587,26 @@ if (!Tuple.equals(multiplyTuple(identityMatrix(/* () */0), a), a)) {
       ];
 }
 
-var m$1 = /* array */[
-  /* array */[
+var m$1 = [
+  [
     0,
     9,
     3,
     0
   ],
-  /* array */[
+  [
     9,
     8,
     0,
     8
   ],
-  /* array */[
+  [
     1,
     8,
     5,
     3
   ],
-  /* array */[
+  [
     0,
     0,
     5,
@@ -617,26 +614,26 @@ var m$1 = /* array */[
   ]
 ];
 
-var transposed = /* array */[
-  /* array */[
+var transposed = [
+  [
     0,
     9,
     1,
     0
   ],
-  /* array */[
+  [
     9,
     8,
     8,
     0
   ],
-  /* array */[
+  [
     3,
     0,
     5,
     5
   ],
-  /* array */[
+  [
     0,
     8,
     3,
@@ -655,7 +652,7 @@ if (!equals(transpose(m$1), transposed)) {
       ];
 }
 
-if (!equals(transpose(identityMatrix(/* () */0)), identityMatrix(/* () */0))) {
+if (!equals(transpose(identityMatrix(undefined)), identityMatrix(undefined))) {
   throw [
         Caml_builtin_exceptions.assert_failure,
         /* tuple */[
@@ -666,26 +663,26 @@ if (!equals(transpose(identityMatrix(/* () */0)), identityMatrix(/* () */0))) {
       ];
 }
 
-var matrix$2 = /* array */[
-  /* array */[
+var matrix$2 = [
+  [
     -6,
     1,
     1,
     6
   ],
-  /* array */[
+  [
     -8,
     5,
     8,
     6
   ],
-  /* array */[
+  [
     -1,
     0,
     8,
     2
   ],
-  /* array */[
+  [
     -7,
     1,
     -1,
@@ -693,18 +690,18 @@ var matrix$2 = /* array */[
   ]
 ];
 
-var subMatrix = /* array */[
-  /* array */[
+var subMatrix = [
+  [
     -6,
     1,
     6
   ],
-  /* array */[
+  [
     -8,
     8,
     6
   ],
-  /* array */[
+  [
     -7,
     -1,
     1
@@ -722,26 +719,26 @@ if (!Matrix3D.equals(submatrix(matrix$2, 2, 1), subMatrix)) {
       ];
 }
 
-var m$2 = /* array */[
-  /* array */[
+var m$2 = [
+  [
     -2,
     -8,
     3,
     5
   ],
-  /* array */[
+  [
     -3,
     1,
     7,
     3
   ],
-  /* array */[
+  [
     1,
     2,
     -9,
     6
   ],
-  /* array */[
+  [
     -6,
     7,
     7,
@@ -804,27 +801,27 @@ if (!Float.equals(determinant(m$2), -4071)) {
       ];
 }
 
-var matrix$3 = /* array */[
-  /* array */[
+var matrix$3 = [
+  [
     6,
     4,
     4,
     4,
     4
   ],
-  /* array */[
+  [
     5,
     5,
     7,
     6
   ],
-  /* array */[
+  [
     4,
     -9,
     3,
     -7
   ],
-  /* array */[
+  [
     9,
     1,
     7,
@@ -854,26 +851,26 @@ if (determinant(matrix$3) === 0) {
       ];
 }
 
-var matrix$4 = /* array */[
-  /* array */[
+var matrix$4 = [
+  [
     -4,
     2,
     -2,
     -3
   ],
-  /* array */[
+  [
     9,
     6,
     2,
     6
   ],
-  /* array */[
+  [
     0,
     -5,
     1,
     -5
   ],
-  /* array */[
+  [
     0,
     0,
     0,
@@ -903,26 +900,26 @@ if (determinant(matrix$4) !== 0) {
       ];
 }
 
-var a$1 = /* array */[
-  /* array */[
+var a$1 = [
+  [
     -5,
     2,
     6,
     -8
   ],
-  /* array */[
+  [
     1,
     -5,
     1,
     8
   ],
-  /* array */[
+  [
     7,
     7,
     -6,
     -7
   ],
-  /* array */[
+  [
     1,
     -3,
     7,
@@ -987,26 +984,26 @@ if (!Float.equals(getUnsafe(b$1, 2, 3), 105 / 532)) {
       ];
 }
 
-if (!equals(b$1, /* array */[
-        /* array */[
+if (!equals(b$1, [
+        [
           0.21805,
           0.45113,
           0.24060,
           -0.04511
         ],
-        /* array */[
+        [
           -0.80827,
           -1.45677,
           -0.44361,
           0.52068
         ],
-        /* array */[
+        [
           -0.07895,
           -0.22368,
           -0.05263,
           0.19737
         ],
-        /* array */[
+        [
           -0.52256,
           -0.81391,
           -0.30075,
@@ -1023,26 +1020,26 @@ if (!equals(b$1, /* array */[
       ];
 }
 
-var matrix$5 = /* array */[
-  /* array */[
+var matrix$5 = [
+  [
     8,
     -5,
     9,
     2
   ],
-  /* array */[
+  [
     7,
     5,
     6,
     1
   ],
-  /* array */[
+  [
     -6,
     0,
     9,
     6
   ],
-  /* array */[
+  [
     -3,
     0,
     -9,
@@ -1050,26 +1047,26 @@ var matrix$5 = /* array */[
   ]
 ];
 
-if (!equals(inverseUnsafe(matrix$5), /* array */[
-        /* array */[
+if (!equals(inverseUnsafe(matrix$5), [
+        [
           -0.15385,
           -0.15385,
           -0.28205,
           -0.53846
         ],
-        /* array */[
+        [
           -0.07692,
           0.12308,
           0.02564,
           0.03077
         ],
-        /* array */[
+        [
           0.35897,
           0.35897,
           0.43590,
           0.92308
         ],
-        /* array */[
+        [
           -0.69231,
           -0.69231,
           -0.76923,
@@ -1086,26 +1083,26 @@ if (!equals(inverseUnsafe(matrix$5), /* array */[
       ];
 }
 
-var matrix$6 = /* array */[
-  /* array */[
+var matrix$6 = [
+  [
     9,
     3,
     0,
     9
   ],
-  /* array */[
+  [
     -5,
     -2,
     -6,
     -3
   ],
-  /* array */[
+  [
     -4,
     9,
     6,
     4
   ],
-  /* array */[
+  [
     -7,
     6,
     6,
@@ -1113,26 +1110,26 @@ var matrix$6 = /* array */[
   ]
 ];
 
-if (!equals(inverseUnsafe(matrix$6), /* array */[
-        /* array */[
+if (!equals(inverseUnsafe(matrix$6), [
+        [
           -0.04074,
           -0.07778,
           0.14444,
           -0.22222
         ],
-        /* array */[
+        [
           -0.07778,
           0.03333,
           0.36667,
           -0.33333
         ],
-        /* array */[
+        [
           -0.02901,
           -0.14630,
           -0.10926,
           0.12963
         ],
-        /* array */[
+        [
           0.17778,
           0.06667,
           -0.26667,
@@ -1149,26 +1146,26 @@ if (!equals(inverseUnsafe(matrix$6), /* array */[
       ];
 }
 
-var a$2 = /* array */[
-  /* array */[
+var a$2 = [
+  [
     3,
     -9,
     7,
     3
   ],
-  /* array */[
+  [
     3,
     -8,
     2,
     -9
   ],
-  /* array */[
+  [
     -4,
     4,
     4,
     1
   ],
-  /* array */[
+  [
     -6,
     5,
     -1,
@@ -1176,26 +1173,26 @@ var a$2 = /* array */[
   ]
 ];
 
-var b$2 = /* array */[
-  /* array */[
+var b$2 = [
+  [
     8,
     2,
     2,
     2
   ],
-  /* array */[
+  [
     3,
     -1,
     7,
     0
   ],
-  /* array */[
+  [
     7,
     0,
     5,
     4
   ],
-  /* array */[
+  [
     6,
     -2,
     0,

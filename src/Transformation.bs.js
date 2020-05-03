@@ -6,11 +6,11 @@ var Matrix4D = require("./Matrix4D.bs.js");
 var Caml_builtin_exceptions = require("bs-platform/lib/js/caml_builtin_exceptions.js");
 
 function identity(param) {
-  return Matrix4D.identityMatrix(/* () */0);
+  return Matrix4D.identityMatrix(undefined);
 }
 
 function translation(t, x, y, z) {
-  var matrix = Matrix4D.identityMatrix(/* () */0);
+  var matrix = Matrix4D.identityMatrix(undefined);
   Matrix4D.setUnsafe(matrix, x, 0, 3);
   Matrix4D.setUnsafe(matrix, y, 1, 3);
   Matrix4D.setUnsafe(matrix, z, 2, 3);
@@ -18,7 +18,7 @@ function translation(t, x, y, z) {
 }
 
 function scaling(t, x, y, z) {
-  var matrix = Matrix4D.identityMatrix(/* () */0);
+  var matrix = Matrix4D.identityMatrix(undefined);
   Matrix4D.setUnsafe(matrix, x, 0, 0);
   Matrix4D.setUnsafe(matrix, y, 1, 1);
   Matrix4D.setUnsafe(matrix, z, 2, 2);
@@ -26,7 +26,7 @@ function scaling(t, x, y, z) {
 }
 
 function rotationX(t, radians) {
-  var matrix = Matrix4D.identityMatrix(/* () */0);
+  var matrix = Matrix4D.identityMatrix(undefined);
   Matrix4D.setUnsafe(matrix, Math.cos(radians), 1, 1);
   Matrix4D.setUnsafe(matrix, Math.sin(radians), 2, 1);
   Matrix4D.setUnsafe(matrix, -Math.sin(radians), 1, 2);
@@ -35,7 +35,7 @@ function rotationX(t, radians) {
 }
 
 function rotationY(t, radians) {
-  var matrix = Matrix4D.identityMatrix(/* () */0);
+  var matrix = Matrix4D.identityMatrix(undefined);
   Matrix4D.setUnsafe(matrix, Math.cos(radians), 0, 0);
   Matrix4D.setUnsafe(matrix, Math.sin(radians), 0, 2);
   Matrix4D.setUnsafe(matrix, -Math.sin(radians), 2, 0);
@@ -44,7 +44,7 @@ function rotationY(t, radians) {
 }
 
 function rotationZ(t, radians) {
-  var matrix = Matrix4D.identityMatrix(/* () */0);
+  var matrix = Matrix4D.identityMatrix(undefined);
   Matrix4D.setUnsafe(matrix, Math.cos(radians), 0, 0);
   Matrix4D.setUnsafe(matrix, Math.sin(radians), 1, 0);
   Matrix4D.setUnsafe(matrix, -Math.sin(radians), 0, 1);
@@ -53,7 +53,7 @@ function rotationZ(t, radians) {
 }
 
 function shearing(t, xy, xz, yx, yz, zx, zy) {
-  var matrix = Matrix4D.identityMatrix(/* () */0);
+  var matrix = Matrix4D.identityMatrix(undefined);
   Matrix4D.setUnsafe(matrix, xy, 0, 1);
   Matrix4D.setUnsafe(matrix, xz, 0, 2);
   Matrix4D.setUnsafe(matrix, yx, 1, 0);
@@ -65,7 +65,7 @@ function shearing(t, xy, xz, yx, yz, zx, zy) {
 
 var applyTo = Matrix4D.multiplyTuple;
 
-var transform = translation(Matrix4D.identityMatrix(/* () */0), 5, -3, 2);
+var transform = translation(Matrix4D.identityMatrix(undefined), 5, -3, 2);
 
 var point = Tuple.makePoint(-3, 4, 5);
 
@@ -80,7 +80,7 @@ if (!Tuple.equals(Matrix4D.multiplyTuple(transform, point), Tuple.makePoint(2, 1
       ];
 }
 
-var transform$1 = translation(Matrix4D.identityMatrix(/* () */0), 5, -3, 2);
+var transform$1 = translation(Matrix4D.identityMatrix(undefined), 5, -3, 2);
 
 var inv = Matrix4D.inverseUnsafe(transform$1);
 
@@ -97,7 +97,7 @@ if (!Tuple.equals(Matrix4D.multiplyTuple(inv, point$1), Tuple.makePoint(-8, 7, 3
       ];
 }
 
-var transform$2 = translation(Matrix4D.identityMatrix(/* () */0), 5, -3, 2);
+var transform$2 = translation(Matrix4D.identityMatrix(undefined), 5, -3, 2);
 
 var vector = Tuple.makeVector(-3, 4, 5);
 
@@ -112,7 +112,7 @@ if (!Tuple.equals(Matrix4D.multiplyTuple(transform$2, vector), vector)) {
       ];
 }
 
-var transform$3 = scaling(Matrix4D.identityMatrix(/* () */0), 2, 3, 4);
+var transform$3 = scaling(Matrix4D.identityMatrix(undefined), 2, 3, 4);
 
 var point$2 = Tuple.makePoint(-4, 6, 8);
 
@@ -127,7 +127,7 @@ if (!Tuple.equals(Matrix4D.multiplyTuple(transform$3, point$2), Tuple.makePoint(
       ];
 }
 
-var transform$4 = scaling(Matrix4D.identityMatrix(/* () */0), 2, 3, 4);
+var transform$4 = scaling(Matrix4D.identityMatrix(undefined), 2, 3, 4);
 
 var vector$1 = Tuple.makeVector(-4, 6, 8);
 
@@ -142,7 +142,7 @@ if (!Tuple.equals(Matrix4D.multiplyTuple(transform$4, vector$1), Tuple.makeVecto
       ];
 }
 
-var transform$5 = scaling(Matrix4D.identityMatrix(/* () */0), 2, 3, 4);
+var transform$5 = scaling(Matrix4D.identityMatrix(undefined), 2, 3, 4);
 
 var inv$1 = Matrix4D.inverseUnsafe(transform$5);
 
@@ -159,7 +159,7 @@ if (!Tuple.equals(Matrix4D.multiplyTuple(inv$1, vector$2), Tuple.makeVector(-2, 
       ];
 }
 
-var transform$6 = scaling(Matrix4D.identityMatrix(/* () */0), -1, 1, 1);
+var transform$6 = scaling(Matrix4D.identityMatrix(undefined), -1, 1, 1);
 
 var point$3 = Tuple.makePoint(2, 3, 4);
 
@@ -176,9 +176,9 @@ if (!Tuple.equals(Matrix4D.multiplyTuple(transform$6, point$3), Tuple.makePoint(
 
 var point$4 = Tuple.makePoint(0, 1, 0);
 
-var halfQuarter = rotationX(Matrix4D.identityMatrix(/* () */0), Math.PI / 4);
+var halfQuarter = rotationX(Matrix4D.identityMatrix(undefined), Math.PI / 4);
 
-var fullQuarter = rotationX(Matrix4D.identityMatrix(/* () */0), Math.PI / 2);
+var fullQuarter = rotationX(Matrix4D.identityMatrix(undefined), Math.PI / 2);
 
 if (!Tuple.equals(Matrix4D.multiplyTuple(halfQuarter, point$4), Tuple.makePoint(0, Math.sqrt(2) / 2, Math.sqrt(2) / 2))) {
   throw [
@@ -204,7 +204,7 @@ if (!Tuple.equals(Matrix4D.multiplyTuple(fullQuarter, point$4), Tuple.makePoint(
 
 var point$5 = Tuple.makePoint(0, 1, 0);
 
-var halfQuarter$1 = rotationX(Matrix4D.identityMatrix(/* () */0), Math.PI / 4);
+var halfQuarter$1 = rotationX(Matrix4D.identityMatrix(undefined), Math.PI / 4);
 
 var inv$2 = Matrix4D.inverseUnsafe(halfQuarter$1);
 
@@ -221,9 +221,9 @@ if (!Tuple.equals(Matrix4D.multiplyTuple(inv$2, point$5), Tuple.makePoint(0, Mat
 
 var point$6 = Tuple.makePoint(0, 0, 1);
 
-var halfQuarter$2 = rotationY(Matrix4D.identityMatrix(/* () */0), Math.PI / 4);
+var halfQuarter$2 = rotationY(Matrix4D.identityMatrix(undefined), Math.PI / 4);
 
-var fullQuarter$1 = rotationY(Matrix4D.identityMatrix(/* () */0), Math.PI / 2);
+var fullQuarter$1 = rotationY(Matrix4D.identityMatrix(undefined), Math.PI / 2);
 
 if (!Tuple.equals(Matrix4D.multiplyTuple(halfQuarter$2, point$6), Tuple.makePoint(Math.sqrt(2) / 2, 0, Math.sqrt(2) / 2))) {
   throw [
@@ -249,9 +249,9 @@ if (!Tuple.equals(Matrix4D.multiplyTuple(fullQuarter$1, point$6), Tuple.makePoin
 
 var point$7 = Tuple.makePoint(0, 1, 0);
 
-var halfQuarter$3 = rotationZ(Matrix4D.identityMatrix(/* () */0), Math.PI / 4);
+var halfQuarter$3 = rotationZ(Matrix4D.identityMatrix(undefined), Math.PI / 4);
 
-var fullQuarter$2 = rotationZ(Matrix4D.identityMatrix(/* () */0), Math.PI / 2);
+var fullQuarter$2 = rotationZ(Matrix4D.identityMatrix(undefined), Math.PI / 2);
 
 if (!Tuple.equals(Matrix4D.multiplyTuple(halfQuarter$3, point$7), Tuple.makePoint(-Math.sqrt(2) / 2, Math.sqrt(2) / 2, 0))) {
   throw [
@@ -275,7 +275,7 @@ if (!Tuple.equals(Matrix4D.multiplyTuple(fullQuarter$2, point$7), Tuple.makePoin
       ];
 }
 
-var transform$7 = shearing(Matrix4D.identityMatrix(/* () */0), 1, 0, 0, 0, 0, 0);
+var transform$7 = shearing(Matrix4D.identityMatrix(undefined), 1, 0, 0, 0, 0, 0);
 
 var point$8 = Tuple.makePoint(2, 3, 4);
 
@@ -290,7 +290,7 @@ if (!Tuple.equals(Matrix4D.multiplyTuple(transform$7, point$8), Tuple.makePoint(
       ];
 }
 
-var transform$8 = shearing(Matrix4D.identityMatrix(/* () */0), 0, 1, 0, 0, 0, 0);
+var transform$8 = shearing(Matrix4D.identityMatrix(undefined), 0, 1, 0, 0, 0, 0);
 
 var point$9 = Tuple.makePoint(2, 3, 4);
 
@@ -305,7 +305,7 @@ if (!Tuple.equals(Matrix4D.multiplyTuple(transform$8, point$9), Tuple.makePoint(
       ];
 }
 
-var transform$9 = shearing(Matrix4D.identityMatrix(/* () */0), 0, 0, 1, 0, 0, 0);
+var transform$9 = shearing(Matrix4D.identityMatrix(undefined), 0, 0, 1, 0, 0, 0);
 
 var point$10 = Tuple.makePoint(2, 3, 4);
 
@@ -320,7 +320,7 @@ if (!Tuple.equals(Matrix4D.multiplyTuple(transform$9, point$10), Tuple.makePoint
       ];
 }
 
-var transform$10 = shearing(Matrix4D.identityMatrix(/* () */0), 0, 0, 0, 1, 0, 0);
+var transform$10 = shearing(Matrix4D.identityMatrix(undefined), 0, 0, 0, 1, 0, 0);
 
 var point$11 = Tuple.makePoint(2, 3, 4);
 
@@ -335,7 +335,7 @@ if (!Tuple.equals(Matrix4D.multiplyTuple(transform$10, point$11), Tuple.makePoin
       ];
 }
 
-var transform$11 = shearing(Matrix4D.identityMatrix(/* () */0), 0, 0, 0, 0, 1, 0);
+var transform$11 = shearing(Matrix4D.identityMatrix(undefined), 0, 0, 0, 0, 1, 0);
 
 var point$12 = Tuple.makePoint(2, 3, 4);
 
@@ -350,7 +350,7 @@ if (!Tuple.equals(Matrix4D.multiplyTuple(transform$11, point$12), Tuple.makePoin
       ];
 }
 
-var transform$12 = shearing(Matrix4D.identityMatrix(/* () */0), 0, 0, 0, 0, 1, 0);
+var transform$12 = shearing(Matrix4D.identityMatrix(undefined), 0, 0, 0, 0, 1, 0);
 
 var point$13 = Tuple.makePoint(2, 3, 4);
 
@@ -365,7 +365,7 @@ if (!Tuple.equals(Matrix4D.multiplyTuple(transform$12, point$13), Tuple.makePoin
       ];
 }
 
-var transform$13 = shearing(Matrix4D.identityMatrix(/* () */0), 0, 0, 0, 0, 0, 1);
+var transform$13 = shearing(Matrix4D.identityMatrix(undefined), 0, 0, 0, 0, 0, 1);
 
 var point$14 = Tuple.makePoint(2, 3, 4);
 
@@ -382,11 +382,11 @@ if (!Tuple.equals(Matrix4D.multiplyTuple(transform$13, point$14), Tuple.makePoin
 
 var point$15 = Tuple.makePoint(1, 0, 1);
 
-var a = rotationX(Matrix4D.identityMatrix(/* () */0), Math.PI / 2);
+var a = rotationX(Matrix4D.identityMatrix(undefined), Math.PI / 2);
 
-var b = scaling(Matrix4D.identityMatrix(/* () */0), 5, 5, 5);
+var b = scaling(Matrix4D.identityMatrix(undefined), 5, 5, 5);
 
-var c = translation(Matrix4D.identityMatrix(/* () */0), 10, 5, 7);
+var c = translation(Matrix4D.identityMatrix(undefined), 10, 5, 7);
 
 var point2 = Matrix4D.multiplyTuple(a, point$15);
 
@@ -429,9 +429,7 @@ if (!Tuple.equals(point4, Tuple.makePoint(15, 0, 7))) {
 
 var point$16 = Tuple.makePoint(1, 0, 1);
 
-var t = translation(scaling(rotationX(Matrix4D.identityMatrix(/* () */0), Math.PI / 2), 5, 5, 5), 10, 5, 7);
-
-if (!Tuple.equals(Matrix4D.multiplyTuple(t, point$16), Tuple.makePoint(15, 0, 7))) {
+if (!Tuple.equals(Matrix4D.multiplyTuple(translation(scaling(rotationX(Matrix4D.identityMatrix(undefined), Math.PI / 2), 5, 5, 5), 10, 5, 7), point$16), Tuple.makePoint(15, 0, 7))) {
   throw [
         Caml_builtin_exceptions.assert_failure,
         /* tuple */[

@@ -17,15 +17,15 @@ function getUnsafe(t, row, col) {
 
 function setUnsafe(t, x, row, col) {
   t[row][col] = x;
-  return /* () */0;
+  
 }
 
-var identityMatrix = /* array */[
-  /* array */[
+var identityMatrix = [
+  [
     1,
     0
   ],
-  /* array */[
+  [
     0,
     1
   ]
@@ -39,27 +39,24 @@ function equals(matrix1, matrix2) {
     var i = _i;
     if (i > 1) {
       return true;
-    } else {
-      var x = getUnsafe(matrix1, i, j);
-      var y = getUnsafe(matrix2, i, j);
-      if (Float.equals(x, y)) {
-        if (j < 1) {
-          _j = j + 1 | 0;
-          continue ;
-        } else {
-          _j = 0;
-          _i = i + 1 | 0;
-          continue ;
-        }
-      } else {
-        return false;
-      }
     }
+    var x = getUnsafe(matrix1, i, j);
+    var y = getUnsafe(matrix2, i, j);
+    if (!Float.equals(x, y)) {
+      return false;
+    }
+    if (j < 1) {
+      _j = j + 1 | 0;
+      continue ;
+    }
+    _j = 0;
+    _i = i + 1 | 0;
+    continue ;
   };
 }
 
 function multiply(m1, m2) {
-  var m3 = makeUninitializedUnsafe(/* () */0);
+  var m3 = makeUninitializedUnsafe(undefined);
   for(var row = 0; row <= 1; ++row){
     for(var col = 0; col <= 1; ++col){
       setUnsafe(m3, getUnsafe(m1, row, 0) * getUnsafe(m2, 0, col) + getUnsafe(m1, row, 1) * getUnsafe(m2, 1, col), row, col);
@@ -69,7 +66,7 @@ function multiply(m1, m2) {
 }
 
 function transpose(m1) {
-  var m2 = makeUninitializedUnsafe(/* () */0);
+  var m2 = makeUninitializedUnsafe(undefined);
   for(var row = 0; row <= 1; ++row){
     for(var col = 0; col <= 1; ++col){
       setUnsafe(m2, getUnsafe(m1, row, col), col, row);
@@ -82,13 +79,13 @@ function determinant(matrix) {
   return getUnsafe(matrix, 0, 0) * getUnsafe(matrix, 1, 1) - getUnsafe(matrix, 0, 1) * getUnsafe(matrix, 1, 0);
 }
 
-var m = /* array */[
-  /* array */[
+var m = [
+  [
     1,
     2,
     3
   ],
-  /* array */[
+  [
     5.5,
     6.5,
     7.5
@@ -139,26 +136,26 @@ if (!Float.equals(getUnsafe(m, 1, 2), 7.5)) {
       ];
 }
 
-var m1 = /* array */[
-  /* array */[
+var m1 = [
+  [
     1,
     2,
     3
   ],
-  /* array */[
+  [
     5,
     6,
     7
   ]
 ];
 
-var m2 = /* array */[
-  /* array */[
+var m2 = [
+  [
     1,
     2,
     3
   ],
-  /* array */[
+  [
     5,
     6,
     7
@@ -176,26 +173,26 @@ if (!equals(m1, m2)) {
       ];
 }
 
-var m1$1 = /* array */[
-  /* array */[
+var m1$1 = [
+  [
     1,
     2,
     3
   ],
-  /* array */[
+  [
     5,
     6,
     7
   ]
 ];
 
-var m2$1 = /* array */[
-  /* array */[
+var m2$1 = [
+  [
     1,
     6,
     3
   ],
-  /* array */[
+  [
     4,
     6,
     7
@@ -213,34 +210,34 @@ if (equals(m1$1, m2$1)) {
       ];
 }
 
-var m1$2 = /* array */[
-  /* array */[
+var m1$2 = [
+  [
     1,
     2
   ],
-  /* array */[
+  [
     3,
     4
   ]
 ];
 
-var m2$2 = /* array */[
-  /* array */[
+var m2$2 = [
+  [
     4,
     5
   ],
-  /* array */[
+  [
     6,
     7
   ]
 ];
 
-var m3 = /* array */[
-  /* array */[
+var m3 = [
+  [
     16,
     19
   ],
-  /* array */[
+  [
     36,
     43
   ]
@@ -257,12 +254,12 @@ if (!equals(multiply(m1$2, m2$2), m3)) {
       ];
 }
 
-var matrix = /* array */[
-  /* array */[
+var matrix = [
+  [
     1,
     2
   ],
-  /* array */[
+  [
     3,
     4
   ]
@@ -279,23 +276,23 @@ if (!equals(multiply(matrix, identityMatrix), matrix)) {
       ];
 }
 
-var matrix$1 = /* array */[
-  /* array */[
+var matrix$1 = [
+  [
     0,
     9
   ],
-  /* array */[
+  [
     3,
     1
   ]
 ];
 
-var transposed = /* array */[
-  /* array */[
+var transposed = [
+  [
     0,
     3
   ],
-  /* array */[
+  [
     9,
     1
   ]
@@ -323,12 +320,12 @@ if (!equals(transpose(identityMatrix), identityMatrix)) {
       ];
 }
 
-var matrix$2 = /* array */[
-  /* array */[
+var matrix$2 = [
+  [
     1,
     5
   ],
-  /* array */[
+  [
     -3,
     2
   ]

@@ -7,9 +7,9 @@ var Caml_builtin_exceptions = require("bs-platform/lib/js/caml_builtin_exception
 
 function make(width, height) {
   var pixelArray = new Array(height);
-  for(var y = 0 ,y_finish = height - 1 | 0; y <= y_finish; ++y){
-    var row = /* array */[];
-    for(var x = 0 ,x_finish = width - 1 | 0; x <= x_finish; ++x){
+  for(var y = 0; y < height; ++y){
+    var row = [];
+    for(var x = 0; x < width; ++x){
       row[x] = Color.make(0, 0, 0);
     }
     pixelArray[y] = row;
@@ -23,7 +23,7 @@ function make(width, height) {
 
 function writePixel(t, x, y, color) {
   t.pixels[y][x] = color;
-  return /* () */0;
+  
 }
 
 function pixelAt(t, x, y) {
@@ -31,16 +31,16 @@ function pixelAt(t, x, y) {
 }
 
 function toPpm(t) {
-  var line1 = String(t.width) + " " + String(t.height) + "\n";
-  var header = "P3\n" + line1 + "255\n";
+  var line1 = String(t.width) + " " + String(t.height) + "\\n";
+  var header = "P3\\n" + line1 + "255\\n";
   var pixelData = "";
-  for(var y = 0 ,y_finish = t.height - 1 | 0; y <= y_finish; ++y){
+  for(var y = 0 ,y_finish = t.height; y < y_finish; ++y){
     var row = t.pixels[y];
-    for(var x = 0 ,x_finish = t.width - 1 | 0; x <= x_finish; ++x){
+    for(var x = 0 ,x_finish = t.width; x < x_finish; ++x){
       var pixel = row[x];
       pixelData = pixelData + Color.toPpmString(pixel, 255) + " ";
     }
-    pixelData = pixelData + "\n";
+    pixelData = pixelData + "\\n";
   }
   return header + pixelData;
 }
@@ -48,7 +48,7 @@ function toPpm(t) {
 function writeToFile(canvas) {
   var data = toPpm(canvas);
   Fs.writeFileSync("canvas.ppm", data, "utf8");
-  return /* () */0;
+  
 }
 
 var c = make(10, 20);
@@ -134,7 +134,7 @@ var canvas$1 = make(5, 3);
 
 var ppm = toPpm(canvas$1);
 
-var lines = ppm.split("\n");
+var lines = ppm.split("\\n");
 
 if (lines[0] !== "P3") {
   throw [
@@ -185,7 +185,7 @@ writePixel(canvas$2, 4, 2, c3);
 
 var ppm$1 = toPpm(canvas$2);
 
-var lines$1 = ppm$1.split("\n");
+var lines$1 = ppm$1.split("\\n");
 
 console.log(lines$1[3]);
 
